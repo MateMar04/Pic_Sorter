@@ -4,6 +4,8 @@ from PIL import Image
 
 directory_path = "./Fotos_Prueba"
 dates = []
+months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre",
+          "Noviembre", "Diciembre"]
 
 
 def get_files(directory):
@@ -50,8 +52,18 @@ def create_years_directories(years):
             pass
 
 
+def create_months_directories(years):
+    for year in years:
+        for month in range(1, 13):
+            try:
+                os.mkdir(f"Fotos_Ordenadas/{year}/{month} {months[month - 1]}")
+            except FileExistsError:
+                pass
+
+
 for i in get_files(directory_path):
     dates.append(get_date_taken(directory_path, i))
 
 create_main_directory()
 create_years_directories(get_years(dates))
+create_months_directories(get_years(dates))
