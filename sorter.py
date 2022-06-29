@@ -4,16 +4,22 @@ from PIL import Image
 
 directory_path = "./Fotos_Prueba"
 dates = []
-months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre",
-          "Noviembre", "Diciembre"]
+month_names = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre",
+               "Noviembre", "Diciembre"]
+
+files = os.listdir(directory_path)
+correct_files = []
+incorrect_files = []
 
 
-def get_files(directory):
-    return os.listdir(directory)
-
-
-def get_number_of_files(files):
-    return len(files)
+def check_files(files):
+    for file in files:
+        path = f"{directory_path}/{file}"
+        try:
+            Image.open(path)._getexif()[36867]
+            correct_files.append(file)
+        except TypeError:
+            incorrect_files.append(file)
 
 
 def get_date_taken(directory, file):
@@ -34,14 +40,19 @@ def create_main_directory():
 def get_years(dates):
     years = []
     for date in dates:
-        try:
-            year = date[:4]
-        except TypeError:
-            year = "NONE"
-
+        year = date[:4]
         years.append(year)
 
     return years
+
+
+def get_months(dates):
+    months = []
+    for date in dates:
+        month = date[5:7]
+        months.append(month)
+
+    return months
 
 
 def create_years_directories(years):
@@ -52,18 +63,24 @@ def create_years_directories(years):
             pass
 
 
-def create_months_directories(years):
+def create_months_directories(years, months):
     for year in years:
-        for month in range(1, 13):
+        for month in months:
             try:
-                os.mkdir(f"Fotos_Ordenadas/{year}/{month} {months[month - 1]}")
+                os.mkdir(f"Fotos_Ordenadas/{year}/{month} {month_names[int(month) - 1]}")
             except FileExistsError:
                 pass
 
 
-for i in get_files(directory_path):
-    dates.append(get_date_taken(directory_path, i))
+check_files(files)
+
+for file in correct_files:
+    dates.append(get_date_taken(directory_path, file))
+
+print(correct_files)
+print(incorrect_files)
+print(dates)
 
 create_main_directory()
 create_years_directories(get_years(dates))
-create_months_directories(get_years(dates))
+create_months_directories(get_years(dates), get_months(dates))
