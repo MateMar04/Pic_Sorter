@@ -17,20 +17,21 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(650, 390)
-        MainWindow.setMinimumSize(QSize(650, 390))
-        MainWindow.setMaximumSize(QSize(650, 390))
+        MainWindow.resize(700, 390)
+        MainWindow.setMinimumSize(QSize(700, 390))
+        MainWindow.setMaximumSize(QSize(700, 390))
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayoutWidget = QWidget(self.centralwidget)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(0, 0, 651, 365))
+        self.verticalLayoutWidget.setGeometry(QRect(0, 0, 702, 365))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.label = QLabel(self.verticalLayoutWidget)
         self.label.setObjectName(u"label")
-        self.label.setMaximumSize(QSize(16777215, 59))
+        self.label.setMinimumSize(QSize(700, 0))
+        self.label.setMaximumSize(QSize(700, 59))
         self.label.setTextFormat(Qt.AutoText)
         self.label.setAlignment(Qt.AlignCenter)
 
@@ -97,7 +98,7 @@ class Ui_MainWindow(object):
 
         self.progressBar = QProgressBar(self.verticalLayoutWidget)
         self.progressBar.setObjectName(u"progressBar")
-        self.progressBar.setValue(24)
+        self.progressBar.setValue(0)
 
         self.horizontalLayout_4.addWidget(self.progressBar)
 
@@ -139,8 +140,8 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.pb_src_dir.clicked.connect(MainWindow.root_dir_slot)
-        self.pb_dst_dir.clicked.connect(MainWindow.final_dir_slot)
+        self.pb_src_dir.clicked.connect(MainWindow.src_dir_slot)
+        self.pb_dst_dir.clicked.connect(MainWindow.dst_dir_slot)
         self.progressBar.valueChanged.connect(MainWindow.progress_changed_slot)
         self.pb_go.clicked.connect(MainWindow.go_slot)
 
@@ -151,13 +152,13 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"ORDENADOR DE FOTOS", None))
         self.pb_src_dir.setText(QCoreApplication.translate("MainWindow", u"Select Source Directory", None))
-        self.lb_src_dir.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.lb_src_dir.setText(QCoreApplication.translate("MainWindow", u"...", None))
         self.pb_dst_dir.setText(QCoreApplication.translate("MainWindow", u"Select Destination Directory", None))
-        self.lb_dst_dir.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.lb_dst_dir.setText(QCoreApplication.translate("MainWindow", u"...", None))
         self.pb_go.setText(QCoreApplication.translate("MainWindow", u"GO", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Progress", None))
-        self.lb_current_number.setText("")
+        self.lb_current_number.setText(QCoreApplication.translate("MainWindow", u"...", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"/", None))
-        self.lb_total_number.setText("")
+        self.lb_total_number.setText(QCoreApplication.translate("MainWindow", u"...", None))
     # retranslateUi
 
