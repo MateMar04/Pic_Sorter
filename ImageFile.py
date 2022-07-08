@@ -44,7 +44,7 @@ class ImageFile:
 
     def move_file(self, dst_path):
         dst_dir = self.create_dir(dst_path)
-        shutil.copy2(self.image_path, dst_dir)
+        shutil.move(self.image_path, dst_dir, copy_function=shutil.copy2)
 
     def generate_name(self, file_name):
         if file_name.endswith(".jpg") or file_name.endswith(".webp") or file_name.endswith(".jpeg"):

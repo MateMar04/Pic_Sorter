@@ -35,9 +35,12 @@ class MainWindow(QMainWindow):
     @Slot()
     def go_slot(self):
         image_files = []
+        self.ui.lb_total_number.setText(f"{len(self.get_src_files())}")
+        
         for file in self.get_src_files():
             path = f"{self.src_path}/{file}"
             image_files.append(ImageFile(path))
+            QApplication.processEvents()
 
         cont = 0
 
@@ -46,6 +49,8 @@ class MainWindow(QMainWindow):
             cont += 1
             value = int((cont / len(image_files)) * 100)
             self.ui.progressBar.setValue(value)
+            self.ui.lb_current_number.setText(f"{cont}")
+            QApplication.processEvents()
 
     @Slot()
     def progress_changed_slot(self):
