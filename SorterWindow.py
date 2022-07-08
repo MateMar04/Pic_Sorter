@@ -17,8 +17,9 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(650, 414)
-        MainWindow.setMinimumSize(QSize(650, 0))
+        MainWindow.resize(650, 390)
+        MainWindow.setMinimumSize(QSize(650, 390))
+        MainWindow.setMaximumSize(QSize(650, 390))
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayoutWidget = QWidget(self.centralwidget)
@@ -41,17 +42,17 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.pushButton = QPushButton(self.verticalLayoutWidget)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMaximumSize(QSize(200, 16777215))
+        self.pb_src_dir = QPushButton(self.verticalLayoutWidget)
+        self.pb_src_dir.setObjectName(u"pb_src_dir")
+        self.pb_src_dir.setMaximumSize(QSize(200, 16777215))
 
-        self.horizontalLayout_2.addWidget(self.pushButton)
+        self.horizontalLayout_2.addWidget(self.pb_src_dir)
 
-        self.label_2 = QLabel(self.verticalLayoutWidget)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setMinimumSize(QSize(0, 30))
+        self.lb_src_dir = QLabel(self.verticalLayoutWidget)
+        self.lb_src_dir.setObjectName(u"lb_src_dir")
+        self.lb_src_dir.setMinimumSize(QSize(0, 30))
 
-        self.horizontalLayout_2.addWidget(self.label_2)
+        self.horizontalLayout_2.addWidget(self.lb_src_dir)
 
 
         self.horizontalLayout.addLayout(self.horizontalLayout_2)
@@ -61,25 +62,25 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.pushButton_2 = QPushButton(self.verticalLayoutWidget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setMaximumSize(QSize(200, 16777215))
+        self.pb_dst_dir = QPushButton(self.verticalLayoutWidget)
+        self.pb_dst_dir.setObjectName(u"pb_dst_dir")
+        self.pb_dst_dir.setMaximumSize(QSize(200, 16777215))
 
-        self.horizontalLayout_3.addWidget(self.pushButton_2)
+        self.horizontalLayout_3.addWidget(self.pb_dst_dir)
 
-        self.label_3 = QLabel(self.verticalLayoutWidget)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setMinimumSize(QSize(0, 30))
+        self.lb_dst_dir = QLabel(self.verticalLayoutWidget)
+        self.lb_dst_dir.setObjectName(u"lb_dst_dir")
+        self.lb_dst_dir.setMinimumSize(QSize(0, 30))
 
-        self.horizontalLayout_3.addWidget(self.label_3)
+        self.horizontalLayout_3.addWidget(self.lb_dst_dir)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_3)
 
-        self.pushButton_3 = QPushButton(self.verticalLayoutWidget)
-        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.pb_go = QPushButton(self.verticalLayoutWidget)
+        self.pb_go.setObjectName(u"pb_go")
 
-        self.verticalLayout_2.addWidget(self.pushButton_3)
+        self.verticalLayout_2.addWidget(self.pb_go)
 
 
         self.verticalLayout.addLayout(self.verticalLayout_2)
@@ -133,19 +134,15 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.verticalLayout_3)
 
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QMenuBar(MainWindow)
-        self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 650, 22))
-        MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.pushButton.clicked.connect(MainWindow.root_dir_slot)
-        self.pushButton_2.clicked.connect(MainWindow.final_dir_slot)
+        self.pb_src_dir.clicked.connect(MainWindow.root_dir_slot)
+        self.pb_dst_dir.clicked.connect(MainWindow.final_dir_slot)
         self.progressBar.valueChanged.connect(MainWindow.progress_changed_slot)
-        self.pushButton_3.clicked.connect(MainWindow.go_slot)
+        self.pb_go.clicked.connect(MainWindow.go_slot)
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -153,11 +150,11 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"ORDENADOR DE FOTOS", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Select Root Directory", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Select Final Directory", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"GO", None))
+        self.pb_src_dir.setText(QCoreApplication.translate("MainWindow", u"Select Source Directory", None))
+        self.lb_src_dir.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.pb_dst_dir.setText(QCoreApplication.translate("MainWindow", u"Select Destination Directory", None))
+        self.lb_dst_dir.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.pb_go.setText(QCoreApplication.translate("MainWindow", u"GO", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Progress", None))
         self.lb_current_number.setText("")
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"/", None))

@@ -7,13 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>650</width>
-    <height>414</height>
+    <height>390</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>650</width>
-    <height>0</height>
+    <height>390</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>650</width>
+    <height>390</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -56,7 +62,7 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="pb_src_dir">
              <property name="maximumSize">
               <size>
                <width>200</width>
@@ -64,12 +70,12 @@
               </size>
              </property>
              <property name="text">
-              <string>Select Root Directory</string>
+              <string>Select Source Directory</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="lb_src_dir">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -88,7 +94,7 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="pb_dst_dir">
            <property name="maximumSize">
             <size>
              <width>200</width>
@@ -96,12 +102,12 @@
             </size>
            </property>
            <property name="text">
-            <string>Select Final Directory</string>
+            <string>Select Destination Directory</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_3">
+          <widget class="QLabel" name="lb_dst_dir">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -116,7 +122,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="pb_go">
          <property name="text">
           <string>GO</string>
          </property>
@@ -210,22 +216,12 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>650</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton</sender>
+   <sender>pb_src_dir</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>root_dir_slot()</slot>
@@ -241,7 +237,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_2</sender>
+   <sender>pb_dst_dir</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>final_dir_slot()</slot>
@@ -273,7 +269,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_3</sender>
+   <sender>pb_go</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>go_slot()</slot>
