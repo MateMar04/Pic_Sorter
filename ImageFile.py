@@ -27,9 +27,9 @@ class ImageFile:
     def get_month_taken(self):
         return self.get_date_taken()[5:7]
 
-    def create_dir(self):
+    def create_dir(self, dst_path):
         try:
-            dir = f"Fotos_Ordenadas"
+            dir = dst_path
             if not os.path.isdir(dir):
                 os.mkdir(dir)
             dir += f"/{self.get_year_taken()}"
@@ -42,8 +42,8 @@ class ImageFile:
         except FileExistsError:
             pass
 
-    def move_file(self):
-        dst_dir = self.create_dir()
+    def move_file(self, dst_path):
+        dst_dir = self.create_dir(dst_path)
         shutil.copy2(self.image_path, dst_dir)
 
     def generate_name(self, file_name):

@@ -15,32 +15,44 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.src_path = ""
+        self.dst_path = ""
 
     @Slot()
     def src_dir_slot(self):
         root = Tk()
         root.withdraw()
-        folder_selected = filedialog.askdirectory()
-        print(folder_selected)
-        self.ui.lb_src_dir.setText(folder_selected)
-        return folder_selected
+        self.src_path = filedialog.askdirectory()
+        self.ui.lb_src_dir.setText(self.src_path)
 
     @Slot()
     def dst_dir_slot(self):
         root = Tk()
         root.withdraw()
-        folder_selected = filedialog.askdirectory()
-        print(folder_selected)
-        self.ui.lb_dst_dir.setText(folder_selected)
-        return folder_selected
+        self.dst_path = filedialog.askdirectory()
+        self.ui.lb_dst_dir.setText(self.dst_path)
 
     @Slot()
     def go_slot(self):
-        print("go_slot")
+        image_files = []
+        for file in self.get_src_files():
+            path = f"{self.src_path}/{file}"
+            image_files.append(ImageFile(path))
+
+        cont = 0
+
+        for image_file in image_files:
+            image_file.move_file(self.dst_path)
+            cont += 1
+            value = int((cont / len(image_files)) * 100)
+            self.ui.progressBar.setValue(value)
 
     @Slot()
     def progress_changed_slot(self):
         pass
+
+    def get_src_files(self):
+        return os.listdir(self.src_path)
 
 
 if __name__ == "__main__":
@@ -51,17 +63,3 @@ if __name__ == "__main__":
 
     sys.exit(app.exec_())
 
-directory_path = "./Fotos_Prueba"
-
-files = os.listdir(directory_path)
-image_files = []
-for file in files:
-    path = f"{directory_path}/{file}"
-    image_files.append(ImageFile(path))
-
-cont = 0
-
-for image_file in image_files:
-    image_file.move_file()
-    cont += 1
-    print(int((cont / len(image_files)) * 100))
