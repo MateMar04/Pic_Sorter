@@ -48,7 +48,7 @@ class ImageFile:
 
     def generate_name(self, file_name):
         if file_name.endswith(".jpg") or file_name.endswith(".webp") or file_name.endswith(".jpeg"):
-            if file_name.startswith("IMG-"):
+            if file_name.startswith("IMG-") or file_name.startswith("IMG_"):
                 year = file_name[4:8]
                 month = file_name[8:10]
                 return f"{year}:{month}:01 00:00:00"
