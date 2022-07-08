@@ -14,9 +14,11 @@ class ImageFile:
     def get_date_taken(self):
         try:
             return Image.open(self.image_path)._getexif()[36867]
-        except TypeError:
-            return "9999:12:31 23:59:59"
-        except UnidentifiedImageError:
+        except TypeError:  # IMAGENES SIN EXIF
+            return self.generate_name(os.path.basename(self.image_path))
+        except UnidentifiedImageError:  # SON VIDEOS
+            return "9998:12:31 23:59:59"
+        except KeyError:  # NO SON IMAGENES
             return "9999:12:31 23:59:59"
 
     def get_year_taken(self):
@@ -43,3 +45,14 @@ class ImageFile:
     def move_file(self):
         dst_dir = self.create_dir()
         shutil.copy2(self.image_path, dst_dir)
+
+    def generate_name(self, file_name):
+        if file_name.endswith(".jpg") or file_name.endswith(".webp") or file_name.endswith(".jpeg"):
+            if file_name.startswith("IMG-"):
+                year = file_name[4:8]
+                month = file_name[8:10]
+                return f"{year}:{month}:01 00:00:00"
+            else:
+                return "9997:12:31 23:59:59"
+        else:
+            return "9997:12:31 23:59:59"
