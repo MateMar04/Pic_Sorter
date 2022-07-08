@@ -58,9 +58,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.lb_src_dir)
 
-
         self.horizontalLayout.addLayout(self.horizontalLayout_2)
-
 
         self.verticalLayout_2.addLayout(self.horizontalLayout)
 
@@ -78,14 +76,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.lb_dst_dir)
 
-
         self.verticalLayout_2.addLayout(self.horizontalLayout_3)
 
         self.pb_go = QPushButton(self.verticalLayoutWidget)
         self.pb_go.setObjectName(u"pb_go")
 
         self.verticalLayout_2.addWidget(self.pb_go)
-
 
         self.verticalLayout.addLayout(self.verticalLayout_2)
 
@@ -105,7 +101,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addWidget(self.progressBar)
 
-
         self.verticalLayout_3.addLayout(self.horizontalLayout_4)
 
         self.horizontalLayout_5 = QHBoxLayout()
@@ -115,7 +110,7 @@ class Ui_MainWindow(object):
         self.lb_current_number.setObjectName(u"lb_current_number")
         self.lb_current_number.setMinimumSize(QSize(0, 10))
         self.lb_current_number.setMaximumSize(QSize(150, 30))
-        self.lb_current_number.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.lb_current_number.setAlignment(Qt.AlignLeading | Qt.AlignLeft | Qt.AlignVCenter)
 
         self.horizontalLayout_5.addWidget(self.lb_current_number)
 
@@ -131,9 +126,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_5.addWidget(self.lb_total_number)
 
-
         self.verticalLayout_3.addLayout(self.horizontalLayout_5)
-
 
         self.verticalLayout.addLayout(self.verticalLayout_3)
 
@@ -149,6 +142,7 @@ class Ui_MainWindow(object):
         self.pb_go.clicked.connect(MainWindow.go_slot)
 
         QMetaObject.connectSlotsByName(MainWindow)
+
     # setupUi
 
     def retranslateUi(self, MainWindow):
@@ -164,4 +158,3 @@ class Ui_MainWindow(object):
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"/", None))
         self.lb_total_number.setText(QCoreApplication.translate("MainWindow", u"...", None))
     # retranslateUi
-

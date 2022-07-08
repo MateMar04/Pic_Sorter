@@ -36,7 +36,7 @@ class MainWindow(QMainWindow):
     def go_slot(self):
         image_files = []
         self.ui.lb_total_number.setText(f"{len(self.get_src_files())}")
-        
+
         for file in self.get_src_files():
             path = f"{self.src_path}/{file}"
             image_files.append(ImageFile(path))
@@ -67,4 +67,3 @@ if __name__ == "__main__":
     window.show()
 
     sys.exit(app.exec_())
-
