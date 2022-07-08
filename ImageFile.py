@@ -17,9 +17,9 @@ class ImageFile:
         except TypeError:  # IMAGENES SIN EXIF
             return self.generate_name(os.path.basename(self.image_path))
         except UnidentifiedImageError:  # SON VIDEOS
-            return "9998:12:31 23:59:59"
+            return self.generate_name(os.path.basename(self.image_path))
         except KeyError:  # NO SON IMAGENES
-            return "9999:12:31 23:59:59"
+            return self.generate_name(os.path.basename(self.image_path))
 
     def get_year_taken(self):
         return self.get_date_taken()[:4]
@@ -53,6 +53,17 @@ class ImageFile:
                 month = file_name[8:10]
                 return f"{year}:{month}:01 00:00:00"
             else:
-                return "9997:12:31 23:59:59"
+                return "9999:12:31 23:59:59"
+        elif file_name.endswith(".mp4"):
+            if file_name.startswith("VID-"):
+                year = file_name[4:8]
+                month = file_name[8:10]
+                return f"{year}:{month}:01 00:00:00"
+            elif len(file_name) == 19:
+                year = file_name[:4]
+                month = file_name[4:6]
+                return f"{year}:{month}:01 00:00:00"
+            else:
+                return "9999:12:31 23:59:59"
         else:
-            return "9997:12:31 23:59:59"
+            return "9999:12:31 23:59:59"
