@@ -47,13 +47,14 @@ class ImageFile:
         shutil.move(self.image_path, dst_dir, copy_function=shutil.copy2)
 
     def generate_name(self, file_name):
+        default_date = "9999:12:31 23:59:59"
         if file_name.endswith(".jpg") or file_name.endswith(".webp") or file_name.endswith(".jpeg"):
             if file_name.startswith("IMG-") or file_name.startswith("IMG_"):
                 year = file_name[4:8]
                 month = file_name[8:10]
                 return f"{year}:{month}:01 00:00:00"
             else:
-                return "9999:12:31 23:59:59"
+                return default_date
         elif file_name.endswith(".mp4"):
             if file_name.startswith("VID-"):
                 year = file_name[4:8]
@@ -64,6 +65,6 @@ class ImageFile:
                 month = file_name[4:6]
                 return f"{year}:{month}:01 00:00:00"
             else:
-                return "9999:12:31 23:59:59"
+                return default_date
         else:
-            return "9999:12:31 23:59:59"
+            return default_date
